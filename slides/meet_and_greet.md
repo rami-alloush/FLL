@@ -1,175 +1,701 @@
 ---
 marp: true
-theme: uncover
-class: lead
+theme: default
+size: 16:9
 paginate: true
-backgroundColor: #0f172a
-color: #f8fafc
+header: "FIRST® LEGO® LEAGUE  |  BIOGLOW™ 2026–2027"
+footer: "Meet & Greet  ·  Founders Edition / SPIKE™ Prime"
 style: |
   section {
-    font-family: 'Inter', system-ui, sans-serif;
-    padding: 40px;
+    box-sizing: border-box;
+    padding: 58px 76px 52px;
+    background-color: #071b22;
+    background-image: radial-gradient(circle at 92% 8%, rgba(0, 212, 190, 0.23), transparent 24%), radial-gradient(circle at 78% 92%, rgba(174, 214, 67, 0.15), transparent 28%);
+    color: #edf7f4;
+    font-family: Aptos, Arial, sans-serif;
+    font-size: 25px;
+    line-height: 1.35;
+  }
+  section::before {
+    color: #82d7ce;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+  section::after {
+    color: #b9cfc9;
+    font-size: 13px;
+  }
+  h1, h2, h3 {
+    font-family: "Aptos Display", Aptos, Arial, sans-serif;
+    letter-spacing: -0.025em;
+    margin: 0 0 0.32em;
   }
   h1 {
-    color: #38bdf8;
-    font-size: 2.5rem;
+    color: #ffffff;
+    font-size: 66px;
+    line-height: 1.03;
   }
   h2 {
-    color: #facc15;
+    color: #ffffff;
+    font-size: 44px;
+    line-height: 1.08;
   }
-  footer {
-    font-size: 0.8rem;
-    color: #94a3b8;
+  h3 {
+    color: #aee54a;
+    font-size: 24px;
+    margin-top: 0.35em;
   }
+  p { margin: 0.35em 0; }
+  strong { color: #ffffff; }
+  a { color: #75e4d8; font-weight: 700; }
+  code { color: #aee54a; }
+  blockquote {
+    border-left: 7px solid #00b8a9;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 0 14px 14px 0;
+    margin: 0.65em 0;
+    padding: 0.48em 0.8em;
+    color: #e6f5f0;
+  }
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 20px;
+    margin-top: 0.45em;
+    overflow: hidden;
+    border: 1px solid rgba(202, 237, 228, 0.22);
+    border-radius: 12px;
+  }
+  th {
+    background: #0f4a52;
+    color: #ffffff;
+    padding: 0.45em 0.65em;
+  }
+  td {
+    padding: 0.4em 0.65em;
+    background: rgba(255, 255, 255, 0.055);
+    border-color: rgba(202, 237, 228, 0.16);
+  }
+  ul, ol { margin: 0.38em 0 0; padding-left: 1.15em; }
+  li { margin: 0.24em 0; }
+  .lead {
+    padding: 76px;
+    background-color: #06252b;
+    background-image: radial-gradient(circle at 86% 18%, rgba(0, 202, 182, 0.42), transparent 26%), radial-gradient(circle at 73% 65%, rgba(171, 216, 62, 0.24), transparent 24%), linear-gradient(135deg, #06242a 0%, #0b3a42 100%);
+  }
+  .lead h1 { font-size: 72px; max-width: 820px; }
+  .lead h2 { color: #b8e94e; font-size: 32px; font-weight: 600; }
+  .light {
+    background-color: #f3faf7;
+    background-image: radial-gradient(circle at 90% 5%, rgba(0, 184, 169, 0.17), transparent 24%), linear-gradient(135deg, #f8fcfa 0%, #e7f7f1 100%);
+    color: #19383b;
+  }
+  .light h1, .light h2 { color: #103b40; }
+  .light h3 { color: #087e76; }
+  .light strong { color: #103b40; }
+  .light a { color: #007d73; }
+  .light blockquote { background: #ddf2eb; color: #164047; }
+  .light table { border-color: #b8d9d1; }
+  .light th { background: #0c756f; }
+  .light td { background: rgba(255, 255, 255, 0.72); border-color: #d1e7e0; }
+  .accent {
+    background-color: #13434b;
+    background-image: radial-gradient(circle at 8% 10%, rgba(174, 229, 74, 0.19), transparent 24%), radial-gradient(circle at 92% 88%, rgba(244, 177, 62, 0.23), transparent 22%);
+  }
+  .kicker {
+    color: #8be6da;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    align-items: start;
+  }
+  .columns-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+  }
+  .card {
+    box-sizing: border-box;
+    min-height: 210px;
+    padding: 22px 25px;
+    border: 1px solid rgba(207, 240, 230, 0.23);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.075);
+  }
+  .light .card {
+    border-color: #c2dfd7;
+    background: rgba(255, 255, 255, 0.75);
+  }
+  .card h3 { margin-top: 0; }
+  .card p, .card ul { font-size: 20px; }
+  .tag {
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #aee54a;
+    color: #12383d;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .callout {
+    padding: 19px 24px;
+    border-left: 7px solid #f4b13e;
+    border-radius: 0 14px 14px 0;
+    background: rgba(244, 177, 62, 0.12);
+    font-size: 23px;
+  }
+  .small { font-size: 18px; }
+  .source { color: #b9cfc9; font-size: 15px; }
+  .light .source { color: #4d7271; }
 ---
 
-# 🤖 Welcome to FLL Challenge!
-## Season 2026–2027: **BIOGLOW™**
+<!-- _class: lead -->
 
-**Meet & Greet Session**  
-*Students (Ages 9–12) & Parents*
+<div class="kicker">Official team kickoff</div>
 
----
+# FIRST LEGO LEAGUE<br>CHALLENGE
 
-# 🌟 Today's Agenda
+## BIOGLOW™ · 2026–2027
 
-1. Welcome & Program Overview
-2. **Video Spotlight**: FLL & BIOGLOW™ Kickoff
-3. Season Theme: **BIOGLOW™**
-4. The 4 Pillars of FLL Competition
-5. Core Values & "Kids Do The Work" Rule
-6. **Interactive Icebreakers** (Students & Parents)
-7. SPIKE Prime Hardware & **Video Tutorials**
-8. Innovation Project Roadmap
-9. Schedule (1x/week, 2.5h) & Parent Roles
-10. **Online Resource Hub** & Hands-On Demo
+**Meet & Greet for students and families**<br>
+Founders Edition · SPIKE™ Prime · Ages and grades vary by region
+
+> **Tonight’s goal:** meet your team, understand the season, and build something together.
 
 ---
 
-# 🏆 What is FIRST LEGO League?
+<!-- _class: light -->
 
-FLL Challenge is an international STEM program for students aged **9–12**.
+<div class="kicker">150 minutes together</div>
 
-- Building real-world problem-solving skills
-- Programming autonomous LEGO SPIKE Prime robots
-- Researching cutting-edge scientific innovation
-- Working together as an unstoppable team!
+# Today’s roadmap
+
+<div class="columns">
+<div class="card">
+
+<span class="tag">Discover</span>
+
+### The FLL experience
+
+What students build, code, research, and present—and why Core Values guide every part of it.
+
+</div>
+<div class="card">
+
+<span class="tag">Watch</span>
+
+### BIOGLOW kickoff
+
+Meet this year’s biodiversity theme and see the official season material in action.
+
+</div>
+<div class="card">
+
+<span class="tag">Try</span>
+
+### Build together
+
+Quick LEGO challenges for students and families, followed by a first look at SPIKE Prime.
+
+</div>
+<div class="card">
+
+<span class="tag">Plan</span>
+
+### Make the season work
+
+Meeting rhythm, family support, official resources, questions, and next steps.
+
+</div>
+</div>
 
 ---
 
-# 🎬 Video Spotlight: What is FLL?
+<div class="kicker">The program</div>
 
-> *Watch: The Excitement of FIRST LEGO League & Championships*
+# What is FIRST LEGO League Challenge?
 
-- **Official Channel**: [FIRST LEGO League Official YouTube](https://www.youtube.com/@FIRSTLEGOLeagueofficial)
-- **Season Highlights**: Students building, coding, and presenting to judges worldwide!
-- **Game & Season Portal**: [firstinspires.org/programs/fll/game-and-season](https://www.firstinspires.org/programs/fll/game-and-season)
+<div class="columns">
+<div>
+
+FIRST LEGO League is a team-based STEM program in which students use **research, engineering, coding, and communication** to tackle a shared challenge.
+
+> Teams learn to solve problems with curiosity, persistence, and respect for one another.
+
+</div>
+<div class="card">
+
+### For our SPIKE Prime team
+
+- Build and program an autonomous robot
+- Explore a real-world biodiversity challenge
+- Design and share an Innovation Project solution
+- Practice presenting, teamwork, and reflection
+
+</div>
+</div>
+
+<p class="source">BIOGLOW Founders Edition Challenge uses LEGO® Education SPIKE™ technology. Confirm local age and event eligibility with your Program Delivery Partner.</p>
 
 ---
 
-# 🌿 This Season: **BIOGLOW™**
+<!-- _class: accent -->
 
-> *Nature has millions of years of engineering experience. How can bioluminescence, biodiversity, and ecosystem tech solve human challenges?*
+<div class="kicker">Watch first</div>
 
-- **Robot Game**: Complete biodiversity missions on the official field mat.
-- **Innovation Project**: Identify a problem in nature/technology, invent a solution, and share it!
+# Welcome to BIOGLOW™
+
+<div class="columns">
+<div class="card">
+
+<span class="tag">3–5 minute opener</span>
+
+### Official season reveal
+
+[Watch: Introducing the 2026–2027 FIRST LEGO League BIOGLOW Season](https://www.youtube.com/watch?v=_g9kl7xb8nU)
+
+Use this video to introduce the biodiversity theme and give families a shared picture of the season.
+
+</div>
+<div class="card">
+
+<span class="tag">Coach’s choice</span>
+
+### Official welcome video
+
+[Watch: Welcome to the BIOGLOW season](https://www.youtube.com/watch?v=MPKxFy3qV2M)
+
+The FIRST and LEGO Education leaders explain the season, the two editions, and how teams can begin.
+
+</div>
+</div>
+
+<div class="callout">Pause after the video: <strong>What part of the season are you most excited to try?</strong></div>
 
 ---
 
-# 🧱 The 4 Pillars of FLL
+<!-- _class: light -->
 
-| Pillar | Focus |
+<div class="kicker">The 2026–2027 season</div>
+
+# BIOGLOW™ is about biodiversity
+
+<div class="columns">
+<div>
+
+Nature is full of connected systems. This season, teams explore **the vibrancy of the world’s ecosystems** and ask how people, plants, animals, and technology can work together.
+
+### Our team’s path: Founders Edition
+
+Our current experience is built around **SPIKE Prime**, an autonomous Robot Game, an Innovation Project, and Core Values.
+
+</div>
+<div class="card">
+
+### A helpful update for families
+
+BIOGLOW offers **Founders Edition** and **Future Edition** experiences. Availability, format, and timing vary by region.
+
+**Founders Edition Challenge** is the relevant path for teams using SPIKE Prime. Check local event information before making assumptions about registration or tournament format.
+
+</div>
+</div>
+
+<p class="source">Official source: [FIRST Game & Season](https://www.firstinspires.org/programs/fll/game-and-season) · [BIOGLOW season materials](https://www.firstinspires.org/resources/library/fll/season-materials)</p>
+
+---
+
+<div class="kicker">Robot game snapshot</div>
+
+# A rainforest field. Fifteen missions. One strategy.
+
+<div class="columns-3">
+<div class="card">
+
+<span class="tag">Mission design</span>
+
+### 15 rainforest missions
+
+The Founders Edition Robot Game explores connections among plants, animals, and people.
+
+</div>
+<div class="card">
+
+<span class="tag">Match play</span>
+
+### 2½ minutes
+
+The robot acts autonomously. Teams choose which missions to attempt and in what order.
+
+</div>
+<div class="card">
+
+<span class="tag">Team quality</span>
+
+### Core Values matter
+
+Teams also demonstrate Gracious Professionalism during official Robot Game matches.
+
+</div>
+</div>
+
+> Start simple. A repeatable mission is more valuable than an ambitious mission that only works once.
+
+<p class="source">Use the official Robot Game Rulebook and current updates as the source of truth for scoring, equipment, and match requirements.</p>
+
+---
+
+<!-- _class: light -->
+
+<div class="kicker">Official game resources</div>
+
+# Watch, set up, then read the rulebook
+
+| Use it for | Official resource |
 |---|---|
-| **Core Values** | Teamwork, Inclusion, Fun, Impact, Discovery, Innovation |
-| **Innovation Project** | Research real problems & design creative solutions |
-| **Robot Design** | Engineering solid mechanisms & smart code |
-| **Robot Game** | Score max points in 2.5-minute matches |
+| Season overview | [BIOGLOW season materials](https://education.lego.com/en-us/first-lego-league/season-materials/) |
+| Field orientation and scoring | [BIOGLOW Robot Game Missions Video — Founders Edition](https://www.youtube.com/watch?v=uhZZ8O1StiQ) |
+| Building the official field | [BIOGLOW Field Setup — Founders Edition](https://www.youtube.com/watch?v=wDan0826cn0) |
+| Rules, updates, meeting guides, and notebooks | [FIRST Game & Season portal](https://www.firstinspires.org/programs/fll/game-and-season) |
+
+<div class="callout">Before the first robot build: **watch the field setup video and read the current rulebook together.**</div>
 
 ---
 
-# 🤝 Core Values & Culture
+<div class="kicker">The whole challenge</div>
 
-- **Gracious Professionalism®**: High-quality work, kindness, and respect for everyone.
-- **Coopertition®**: We compete hard, but we help each other grow!
-- **Golden Rule**: **The Kids Do The Work!** Coaches guide, students build & program.
+# The four pillars of FLL
 
----
+<div class="columns-3">
+<div class="card">
 
-# 🧊 Interactive Icebreaker Time!
+<span class="tag">01</span>
 
-### Challenge 1: **Tallest Tower**
-- 10 LEGO Bricks, 3 Minutes, highest freestanding structure wins!
+### Core Values
 
-### Challenge 2: **Bio-Tech Creature**
-- Build a glowing sea creature or beetle that exists in a BIOGLOW ecosystem!
+Discovery, Innovation, Impact, Inclusion, Teamwork, and Fun guide how the team works.
 
-### Challenge 3: **Blindfold Build Relay**
-- 1 Partner blindfolded, 1 partner giving directions!
+</div>
+<div class="card">
 
----
+<span class="tag">02</span>
 
-# ⚡ Meet SPIKE Prime!
+### Innovation Project
 
-- **Smart Hub**: 6-axis Gyroscope, 5x5 LED Matrix, Bluetooth
-- **Motors**: High-precision angular movement
-- **Sensors**: Color, Distance, and Force Sensors
-- **Coding**: Scratch-based Word Blocks & Python
+Research a biodiversity-related problem, create a solution, and share it with others.
 
----
+</div>
+<div class="card">
 
-# 🎬 Video Spotlight: SPIKE Prime Tutorials
+<span class="tag">03</span>
 
-> *Watch: Scratch-Based Word Blocks & Robot Navigation in Action*
+### Robot Design + Game
 
-- **Prime Lessons Portal**: [primelessons.org](https://primelessons.org) — Step-by-step guides for line followers, gyro straight drives, and attachment mechanisms.
-- **LEGO Education Units**: [education.lego.com](https://education.lego.com) — "Competition Ready" unit plans.
-- **ORTOP Wiki**: [ortop.org](https://ortop.org) — Oregon Robotics Video Wiki for FLL teams.
+Engineer a dependable robot, explain the decisions behind it, and use it in the 2½-minute Robot Game.
+
+</div>
+</div>
+
+> Success is not only a score. It is a team that learns to make thoughtful decisions together.
 
 ---
 
-# 💡 The Innovation Project Journey
+<!-- _class: light -->
 
-1. **Identify**: Find a specific real-world problem related to nature & technology.
-2. **Design**: Invent a novel solution (device, app, physical model, or bio-system).
-3. **Share**: Present prototype to community experts and gather feedback.
-4. **Present**: Create a 5-minute creative pitch to perform for tournament judges!
+<div class="kicker">Team culture</div>
+
+# How we will work together
+
+<div class="columns">
+<div class="card">
+
+<span class="tag">Gracious Professionalism®</span>
+
+### Do high-quality work with kindness
+
+We treat teammates, volunteers, and other teams with respect—especially when things are difficult.
+
+</div>
+<div class="card">
+
+<span class="tag">Coopertition®</span>
+
+### Compete hard. Help everyone grow.
+
+We share learning, celebrate improvement, and remember that other teams are fellow problem-solvers.
+
+</div>
+</div>
+
+<div class="callout"><strong>The golden rule:</strong> Students do the work. Coaches and families guide with questions, encouragement, logistics, and safety support.</div>
 
 ---
 
-# 🗓️ Season Schedule & Logistics
+<div class="kicker">Try it now</div>
 
-- **Meeting Cadence**: Once a week for **2.5 Hours**
-- **Consistency is key**: Every meeting builds on the last!
-- **Team Roles**: Builders, Coders, Researchers, Strategists (everyone tries everything!)
+# Three quick team challenges
+
+<div class="columns-3">
+<div class="card">
+
+<span class="tag">3 minutes</span>
+
+### Tallest tower
+
+Use 10 LEGO bricks to build the tallest freestanding tower you can.
+
+**Debrief:** What made your base stable?
+
+</div>
+<div class="card">
+
+<span class="tag">5 minutes</span>
+
+### Ecosystem engineer
+
+Build a model that helps a rainforest plant or animal survive.
+
+**Debrief:** What problem does it solve?
+
+</div>
+<div class="card">
+
+<span class="tag">5 minutes</span>
+
+### Direction relay
+
+One partner builds while the other gives precise, respectful directions.
+
+**Debrief:** Which instructions helped most?
+
+</div>
+</div>
 
 ---
 
-# 👨‍👩‍👧‍👦 Parent Partnership
+<!-- _class: light -->
 
-We need parent superheroes!
-- 🍎 **Snack Captain**: Coordinate healthy snacks & water.
-- 🔬 **Project Connector**: Connect the team with bio-tech or nature experts.
-- 📋 **Practice Judge**: Play judge during mock presentations in weeks 12–13.
-- 🚗 **Event Logistics**: Help transport robot mats and boards on Tournament Day!
+<div class="kicker">Our robotics platform</div>
+
+# Meet SPIKE™ Prime
+
+<div class="columns">
+<div class="card">
+
+<span class="tag">The hub</span>
+
+### The robot’s brain
+
+- 6-axis gyroscope for heading and turning
+- 5×5 LED light matrix
+- Bluetooth and rechargeable battery
+- Six ports for motors and sensors
+
+</div>
+<div class="card">
+
+<span class="tag">Motors + sensors</span>
+
+### The robot’s body and senses
+
+- Angular motors for driving and attachments
+- Color Sensor for lines and markers
+- Distance Sensor for measuring proximity
+- Force Sensor for touch and control inputs
+
+</div>
+</div>
+
+> First mini-lab: connect the Hub, display a glowing image, and make a motor move when the Force Sensor is pressed.
 
 ---
 
-# 🌐 Recommended Video & Resource Hubs
+<div class="kicker">Build the right habits</div>
 
-| Resource | Description / URL |
+# Learn robotics in a repeatable loop
+
+<div class="columns-3">
+<div class="card">
+
+<span class="tag">Build</span>
+
+### Make one simple mechanism
+
+Start with a stable driving base and one purpose at a time.
+
+</div>
+<div class="card">
+
+<span class="tag">Code</span>
+
+### Write a small program
+
+Use Word Blocks first; move toward reusable My Blocks and Python when ready.
+
+</div>
+<div class="card">
+
+<span class="tag">Test + improve</span>
+
+### Collect evidence
+
+Run the same test more than once. Record what changed and what the robot did.
+
+</div>
+</div>
+
+<p class="source">Official skill-building path: [LEGO Education SPIKE Prime Competition Ready](https://education.lego.com/en-us/lessons/prime-competition-ready/)</p>
+
+---
+
+<!-- _class: light -->
+
+<div class="kicker">Innovation Project</div>
+
+# Turn curiosity into community impact
+
+| Step | What students do |
 |---|---|
-| **FLL Official YouTube** | [youtube.com/@FIRSTLEGOLeagueofficial](https://www.youtube.com/@FIRSTLEGOLeagueofficial) |
-| **Prime Lessons** | [primelessons.org](https://primelessons.org) (Tailored SPIKE Prime tutorials) |
-| **LEGO Education** | [education.lego.com](https://education.lego.com) |
-| **FIRST Inspires Hub** | [firstinspires.org/programs/fll/game-and-season](https://www.firstinspires.org/programs/fll/game-and-season) |
+| **Identify** | Observe a specific biodiversity or ecosystem challenge. |
+| **Research** | Learn from credible sources and people who understand the problem. |
+| **Design** | Create, compare, and improve possible solutions. |
+| **Share** | Gather feedback, refine the idea, and tell the story clearly. |
+
+<div class="callout">Start with listening. A conversation with an expert, local organization, or affected community member can make a project more useful and more original.</div>
 
 ---
 
-# 🚀 Next Steps & Hands-On Demo
+<div class="kicker">A rhythm that builds momentum</div>
 
-1. Sign the **Team Code of Conduct**
-2. Confirm your contact info on team chat
-3. Grab a SPIKE Prime Hub & program your first glowing LED animation!
+# Weekly team schedule
 
-**Questions & Answers?**
-*Let's build an amazing season together!*
+<div class="columns">
+<div class="card">
+
+<span class="tag">Once per week</span>
+
+### 2.5 hours together
+
+A steady meeting rhythm gives the team enough time to build, code, research, present, and clean up well.
+
+</div>
+<div class="card">
+
+<span class="tag">A simple session pattern</span>
+
+- 15 min: check-in and goals
+- 45 min: robot build / code / test
+- 45 min: Innovation Project work
+- 25 min: share-out, documentation, and reset
+- 20 min: team building or focused skill practice
+
+</div>
+</div>
+
+---
+
+<!-- _class: light -->
+
+<div class="kicker">Family partnership</div>
+
+# Adults make the team possible
+
+<div class="columns-3">
+<div class="card">
+
+<span class="tag">Keep us ready</span>
+
+### Snack & session support
+
+Coordinate water, snacks, sign-ins, and a welcoming space.
+
+</div>
+<div class="card">
+
+<span class="tag">Open doors</span>
+
+### Project connector
+
+Help the team meet people who understand ecosystems, conservation, research, or technology.
+
+</div>
+<div class="card">
+
+<span class="tag">Make events work</span>
+
+### Practice judge & logistics
+
+Offer feedback during rehearsals and help with travel or equipment on event days.
+
+</div>
+</div>
+
+> The most valuable adult support removes obstacles so students can lead.
+
+---
+
+<div class="kicker">Keep these close</div>
+
+# Official resource hub
+
+<div class="columns">
+<div class="card">
+
+### FIRST LEGO League
+
+- [BIOGLOW Game & Season](https://www.firstinspires.org/programs/fll/game-and-season)
+- [BIOGLOW season materials](https://www.firstinspires.org/resources/library/fll/season-materials)
+- [FIRST LEGO League YouTube channel](https://www.youtube.com/@FIRSTLEGOLeagueofficial)
+
+</div>
+<div class="card">
+
+### LEGO Education
+
+- [BIOGLOW Founders Edition materials](https://education.lego.com/en-us/first-lego-league/season-materials/)
+- [SPIKE Prime Competition Ready](https://education.lego.com/en-us/lessons/prime-competition-ready/)
+- [SPIKE Prime lesson-planning units](https://education.lego.com/en-us/teacher-resources/lego-education-spike-prime/lesson-planning/lego-education-spike-prime-lesson-planning-themed-units/)
+
+</div>
+</div>
+
+<p class="source">Links verified August 11, 2026. Official game and event requirements can change; check the Game & Season portal before acting on them.</p>
+
+---
+
+<!-- _class: lead -->
+
+<div class="kicker">Ready to begin</div>
+
+# Let’s make a team<br>that glows.
+
+## Questions, sign-up, and hands-on SPIKE Prime time
+
+<div class="columns">
+<div>
+
+1. Sign the team agreement
+2. Confirm family contact information
+3. Join a building table and program your first Hub animation
+
+</div>
+<div class="card">
+
+### Leave with one answer
+
+**What is one thing you are ready to build, learn, or help with this season?**
+
+</div>
+</div>

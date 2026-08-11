@@ -17,14 +17,18 @@ Welcome to your central management repository for coaching FIRST LEGO League (FL
 │   └── templates/
 │       └── session_template.md   # Template for future weekly team sessions
 └── slides/
+    ├── generate_meet_and_greet.js # Editable PowerPoint generator (PptxGenJS)
+    ├── meet_and_greet_editable.pptx # Generated editable presentation
     ├── meet_and_greet.html       # Interactive modern slide presentation app
-    └── meet_and_greet.md         # Markdown slide source deck
+    └── meet_and_greet.md         # Legacy Markdown slide source deck
 ```
 
 ---
 
 ## 🚀 Quick Links
 
+- **[Meet & Greet Editable PowerPoint](slides/meet_and_greet_editable.pptx)** — generated with PptxGenJS; text, shapes, and cards are editable in PowerPoint.
+- **[Meet & Greet PowerPoint Generator](slides/generate_meet_and_greet.js)** — run `npm run generate:slides` to recreate the deck.
 - **[Meet & Greet Slides (Interactive HTML Presentation)](file:///Users/rami/Work/FLL/slides/meet_and_greet.html)**
 - **[Meet & Greet Markdown Deck](file:///Users/rami/Work/FLL/slides/meet_and_greet.md)**
 - **[Meeting 1 Detailed Agenda & Lesson Plan](file:///Users/rami/Work/FLL/sessions/meeting_01_meet_and_greet.md)**

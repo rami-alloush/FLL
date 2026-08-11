@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLL BIOGLOW™ Meet & Greet Presentation (with Videos)</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090d16;
+      --bg-card: rgba(15, 23, 42, 0.8);
+      --bg-card-border: rgba(56, 189, 248, 0.2);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #10b981;
+      --accent-yellow: #facc15;
+      --accent-purple: #c084fc;
+      --accent-rose: #fb7185;
+      --gradient-bioglow: linear-gradient(135deg, #10b981 0%, #0284c7 50%, #6366f1 100%);
+      --gradient-glow: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15), transparent 70%);
+      --radius-lg: 20px;
+      --radius-md: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      background-image: var(--gradient-glow);
+    }
+
+    /* Top Bar Controls */
+    .top-bar {
+      height: 60px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+
+    .brand-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-badge .pill {
+      background: var(--gradient-bioglow);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .controls-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent-cyan);
+    }
+
+    .btn-primary {
+      background: var(--accent-cyan);
+      color: #090d16;
+      border-color: var(--accent-cyan);
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      background: #7dd3fc;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Main Deck Stage */
+    .deck-container {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .slide {
+      position: absolute;
+      width: 90%;
+      max-width: 1200px;
+      height: 88%;
+      max-height: 760px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(30px) scale(0.98);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Typography inside Slides */
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--accent-yellow);
+      margin-bottom: 0.8rem;
+    }
+
+    p.subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 850px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Layout Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      flex: 1;
+      align-items: center;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      flex: 1;
+      align-items: stretch;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--accent-cyan);
+      transform: translateY(-4px);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Video Embed Container */
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #000;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Video Card Placeholder fallback */
+    .video-fallback {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(2, 132, 199, 0.2));
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    /* Pillar Highlight Card Colors */
+    .pillar-core { border-top: 4px solid var(--accent-yellow); }
+    .pillar-project { border-top: 4px solid var(--accent-emerald); }
+    .pillar-design { border-top: 4px solid var(--accent-cyan); }
+    .pillar-game { border-top: 4px solid var(--accent-rose); }
+
+    /* Interactive Icebreaker Box */
+    .icebreaker-box {
+      background: rgba(16, 185, 129, 0.08);
+      border: 2px dashed var(--accent-emerald);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex: 1;
+    }
+
+    .icebreaker-display {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1rem;
+    }
+
+    /* Speaker Notes Box */
+    .speaker-notes {
+      position: absolute;
+      bottom: -150px;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.95);
+      border-top: 2px solid var(--accent-yellow);
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      color: var(--accent-yellow);
+      display: none;
+      z-index: 20;
+    }
+
+    .speaker-notes.visible {
+      display: block;
+    }
+
+    /* Bottom Bar Progress */
+    .bottom-bar {
+      height: 60px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(9, 13, 22, 0.9);
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      margin: 0 2rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--gradient-bioglow);
+      transition: width 0.3s ease;
+    }
+
+    .slide-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      min-width: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar Controls -->
+  <header class="top-bar">
+    <div class="brand-badge">
+      <span>FIRST® LEGO® LEAGUE</span>
+      <span class="pill">BIOGLOW™ 2026–2027</span>
+    </div>
+    <div class="controls-right">
+      <button class="btn" id="notesToggle" title="Toggle Speaker Notes (N)">📝 Notes</button>
+      <button class="btn" id="fullscreenToggle" title="Toggle Fullscreen (F)">⛶ Fullscreen</button>
+    </div>
+  </header>
+
+  <!-- Main Slide Deck Stage -->
+  <main class="deck-container">
+
+    <!-- SLIDE 1: Title -->
+    <section class="slide active">
+      <div>
+        <span style="color: var(--accent-emerald); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;">Official Team Kickoff</span>
+        <h1 style="margin-top: 0.4rem;">Welcome to FLL Challenge!</h1>
+        <p class="subtitle">Exploring Biodiversity & Bio-Tech Innovations with LEGO SPIKE Prime</p>
+      </div>
+
+      <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-md); padding: 1.8rem; display: flex; align-items: center; justify-content: space-between;">
+        <div>
+          <h3 style="color: var(--accent-emerald); font-family: 'Outfit'; font-size: 1.4rem;">Season 2026–2027: BIOGLOW™</h3>
+          <p style="color: var(--text-muted); margin-top: 4px;">Students (Ages 9–12) & Parents Meet & Greet</p>
+        </div>
+        <div style="font-size: 3rem;">🌱🤖🔬</div>
+      </div>
+
+      <div style="display: flex; gap: 2rem; color: var(--text-muted); font-size: 0.9rem;">
+        <div>🗓️ <strong>Schedule:</strong> 1x / Week (2.5 Hours)</div>
+        <div>📍 <strong>Location:</strong> Team Lab Room</div>
+        <div>💡 <strong>Golden Rule:</strong> Kids Do The Work!</div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Welcome parents and students as they walk in! Introduce yourself as the coach. Emphasize that today is about getting to know each other, understanding the FLL journey, and having fun.
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Agenda -->
+    <section class="slide">
+      <div>
+        <h2>Today's Roadmap</h2>
+        <p class="subtitle">What we will cover during our 2.5-hour Meet & Greet session</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-icon">1️⃣</div>
+          <div class="card-title">Program & Video Introduction</div>
+          <div class="card-desc">Discover what makes FLL Challenge unique and watch the official season video!</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">2️⃣</div>
+          <div class="card-title">Interactive Icebreakers</div>
+          <div class="card-desc">Fun, fast-paced LEGO building challenges for students AND parents working together!</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">3️⃣</div>
+          <div class="card-title">SPIKE Prime Hardware & Tutorials</div>
+          <div class="card-desc">Get hands-on with the SPIKE Hub, Gyro sensor, motors, and watch programming demos.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">4️⃣</div>
+          <div class="card-title">Schedule, Logistics & Q&A</div>
+          <div class="card-desc">Weekly meeting expectations, parent support roles, tournament dates, and safety rules.</div>
+        </div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Set expectations. Remind parents that the session is interactive, so they will get to participate in a mini building challenge!
+      </div>
+    </section>
+
+    <!-- SLIDE 3: What is FLL? -->
+    <section class="slide">
+      <div>
+        <h2>What is FIRST® LEGO® League Challenge?</h2>
+        <p class="subtitle">A global STEM program empowering young innovators (Ages 9–12)</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title" style="font-size: 1.4rem;">🎯 The Goal</div>
+          <div class="card-desc" style="font-size: 1rem;">
+            Teams of students research real-world problems, engineer autonomous LEGO robots, and compete in friendly tournaments—all while practicing core human values.
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="card" style="border-left: 4px solid var(--accent-cyan);">
+            <strong>🧠 Real-World Problem Solving:</strong> Apply science, tech, and engineering to actual societal challenges.
+          </div>
+          <div class="card" style="border-left: 4px solid var(--accent-emerald);">
+            <strong>💻 Hands-On Coding & Robotics:</strong> Build modular mechanisms & program SPIKE Prime microcontrollers.
+          </div>
+          <div class="card" style="border-left: 4px solid var(--accent-yellow);">
+            <strong>👥 Teamwork & Confidence:</strong> Learn presentation, communication, and leadership skills for life.
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Highlight that FLL is much more than just playing with LEGO bricks—it's a complete engineering and public speaking journey.
+      </div>
+    </section>
+
+    <!-- SLIDE 4: VIDEO SPOTLIGHT 1 - FLL & Season Kickoff -->
+    <section class="slide">
+      <div>
+        <span style="color: var(--accent-cyan); font-weight: 700; text-transform: uppercase;">🎬 Video Spotlight</span>
+        <h2 style="color: #ffffff; margin-top: 4px;">Watch: What is FLL & Season Kickoff</h2>
+        <p class="subtitle">Official intro to FIRST LEGO League and the excitement of competition</p>
+      </div>
+
+      <div class="grid-2">
+        <!-- Video Embed -->
+        <div class="video-container">
+          <iframe 
+            src="https://www.youtube-nocookie.com/embed/videoseries?list=PLtN70zI2VdC51i_O1t5_uP0rZz7U7N_uV" 
+            title="FIRST LEGO League Official Season Channel"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <!-- Callout Info -->
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="card" style="border-left: 4px solid var(--accent-emerald);">
+            <div class="card-title" style="color: var(--accent-emerald);">📹 What You'll See</div>
+            <div class="card-desc">
+              Highlights of students building, programming, and presenting at official tournaments worldwide.
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">🔗 Official YouTube Hub</div>
+            <div class="card-desc" style="margin-bottom: 12px;">
+              Watch full season teasers, robot match breakdowns, and championship updates.
+            </div>
+            <a href="https://www.youtube.com/@FIRSTLEGOLeagueofficial" target="_blank" class="btn btn-primary" style="display: inline-flex; width: fit-content;">
+              ▶️ Open Official FIRST YouTube Channel
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Play the video clip for the room (approx 2-3 minutes). Point out the excitement of tournament day!
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Season Theme BIOGLOW -->
+    <section class="slide">
+      <div>
+        <span style="color: var(--accent-emerald); font-weight: 700; text-transform: uppercase;">Season Theme Reveal</span>
+        <h2 style="color: #ffffff; margin-top: 4px;">BIOGLOW™: Nature & Ecosystem Innovation</h2>
+        <p class="subtitle">Exploring how nature's design inspires modern technology</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.3);">
+          <div class="card-title" style="color: var(--accent-emerald);">🌿 The Season Mission</div>
+          <p class="card-desc" style="font-size: 1rem; margin-top: 8px;">
+            From bioluminescent ocean creatures to forest networks, nature has spent millions of years perfecting bio-systems. Teams will investigate how technological innovations can protect biodiversity or borrow solutions from living organisms!
+          </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="card">
+            <strong>🤖 Robot Game Field:</strong> Complete 15+ themed missions on the official mat (protecting ecosystems, tracking wildlife, harvesting clean energy).
+          </div>
+          <div class="card">
+            <strong>💡 Innovation Project:</strong> Research a specific biodiversity or bio-tech problem, create a new solution, and present it to expert judges.
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Ask students: "Can anyone name a plant or animal that inspired a human invention?" (e.g. Velcro inspired by burrs, sonar from bats, glowing lights from fireflies).
+      </div>
+    </section>
+
+    <!-- SLIDE 6: The 4 Pillars -->
+    <section class="slide">
+      <div>
+        <h2>The 4 Pillars of FLL Competition</h2>
+        <p class="subtitle">Teams are judged equally across all 4 categories (25% weight each)</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card pillar-core">
+          <div class="card-icon">❤️</div>
+          <div class="card-title">Core Values</div>
+          <div class="card-desc">Discovery, Innovation, Impact, Inclusion, Teamwork, and Fun!</div>
+        </div>
+        <div class="card pillar-project">
+          <div class="card-icon">💡</div>
+          <div class="card-title">Innovation Project</div>
+          <div class="card-desc">Identify a problem, create a solution, share with experts & community.</div>
+        </div>
+        <div class="card pillar-design">
+          <div class="card-icon">🛠️</div>
+          <div class="card-title">Robot Design</div>
+          <div class="card-desc">Engineering design, attachment mechanics, code modularity & strategy.</div>
+        </div>
+        <div class="card pillar-game">
+          <div class="card-icon">🎮</div>
+          <div class="card-title">Robot Game</div>
+          <div class="card-desc">Score maximum points in 2.5-minute autonomous matches!</div>
+        </div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Reassure parents that winning the robot game is only 25% of the score. A team with great Core Values and a strong Innovation Project can win high awards!
+      </div>
+    </section>
+
+    <!-- SLIDE 7: Core Values & Golden Rule -->
+    <section class="slide">
+      <div>
+        <h2>Core Values & Coaching Philosophy</h2>
+        <p class="subtitle">Gracious Professionalism® & Coopertition® in action</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-left: 5px solid var(--accent-yellow);">
+          <h3 style="color: var(--accent-yellow); font-family: 'Outfit'; font-size: 1.5rem; margin-bottom: 0.5rem;">The Golden Rule</h3>
+          <p style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 1rem;">
+            "THE KIDS DO THE WORK!"
+          </p>
+          <p class="card-desc">
+            Coaches and parents are guides and cheerleaders. If a robot needs troubleshooting or a project script needs writing, the students lead the way.
+          </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="card">
+            <strong>🌟 Discovery:</strong> We explore new skills and ideas.
+          </div>
+          <div class="card">
+            <strong>🤝 Inclusion:</strong> We respect each other and embrace our differences.
+          </div>
+          <div class="card">
+            <strong>🎉 Fun:</strong> We enjoy and celebrate what we do!
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Emphasize that mistakes are celebrated as learning opportunities ("Failure is just data!").
+      </div>
+    </section>
+
+    <!-- SLIDE 8: Interactive Icebreaker -->
+    <section class="slide">
+      <div>
+        <h2>🧊 Icebreaker Generator!</h2>
+        <p class="subtitle">Let's warm up our brains with a quick interactive team challenge</p>
+      </div>
+
+      <div class="icebreaker-box">
+        <div class="icebreaker-display" id="icebreakerText">
+          Click the button below to draw an Icebreaker Challenge! 🎲
+        </div>
+        <button class="btn btn-primary" id="spinBtn" style="font-size: 1.1rem; padding: 12px 24px;">
+          ⚡ Spin Random Icebreaker Challenge
+        </button>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Click the spin button to give the students and parents a 3-minute quick challenge (e.g. build a 10-brick tower or make a robot noise).
+      </div>
+    </section>
+
+    <!-- SLIDE 9: SPIKE Prime Platform -->
+    <section class="slide">
+      <div>
+        <h2>The Hardware: LEGO® SPIKE™ Prime</h2>
+        <p class="subtitle">Our powerful robotics toolkit for the season</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">🧠 The Programmable Hub</div>
+          <ul style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; margin-left: 1.2rem;">
+            <li>Built-in 6-axis Gyroscope for precise turning</li>
+            <li>5x5 LED Light Matrix display</li>
+            <li>6 I/O ports for smart sensors & motors</li>
+            <li>Bluetooth & rechargeable battery</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🔌 Motors & Smart Sensors</div>
+          <ul style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; margin-left: 1.2rem;">
+            <li><strong>Angular Motors:</strong> High precision drive base & attachments</li>
+            <li><strong>Color Sensor:</strong> Detect lines, mat colors & target markers</li>
+            <li><strong>Distance Sensor:</strong> Ultrasonic wall detection</li>
+            <li><strong>Force Sensor:</strong> Touch & push button triggers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Show the physical SPIKE Hub to the room. Demonstrate turning on the LED matrix.
+      </div>
+    </section>
+
+    <!-- SLIDE 10: VIDEO SPOTLIGHT 2 - SPIKE Prime Tutorial -->
+    <section class="slide">
+      <div>
+        <span style="color: var(--accent-yellow); font-weight: 700; text-transform: uppercase;">🎬 Video & Learning Spotlight</span>
+        <h2 style="color: #ffffff; margin-top: 4px;">Watch: SPIKE Prime Robotics in Action</h2>
+        <p class="subtitle">Scratch-based Word Blocks & Gyro navigation tutorials</p>
+      </div>
+
+      <div class="grid-2">
+        <!-- Video Embed -->
+        <div class="video-container">
+          <iframe 
+            src="https://www.youtube-nocookie.com/embed/videoseries?list=PLPZ8r_hL1HvhgD6b8S83l3wP7R0G5K9vF" 
+            title="SPIKE Prime Robotics & FLL Programming Tutorials"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <!-- Info & Resource links -->
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="card" style="border-left: 4px solid var(--accent-yellow);">
+            <div class="card-title" style="color: var(--accent-yellow);">💻 Prime Lessons Hub</div>
+            <div class="card-desc">
+              Free community tutorial portal with step-by-step guides for line followers, gyro straight drives, and attachment mechanisms.
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px;">
+            <a href="https://primelessons.org" target="_blank" class="btn btn-primary">
+              🌐 Visit PrimeLessons.org
+            </a>
+            <a href="https://education.lego.com" target="_blank" class="btn">
+              🧱 LEGO Education Hub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Show students how SPIKE Prime uses visual color-coded block coding (Scratch) so no prior text programming experience is required!
+      </div>
+    </section>
+
+    <!-- SLIDE 11: Innovation Project -->
+    <section class="slide">
+      <div>
+        <h2>The Innovation Project Journey</h2>
+        <p class="subtitle">How students become real-world scientific researchers</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card">
+          <div class="card-icon">1️⃣</div>
+          <div class="card-title">Identify</div>
+          <div class="card-desc">Find a specific real-world problem related to nature & technology.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">2️⃣</div>
+          <div class="card-title">Design</div>
+          <div class="card-desc">Invent a novel solution (a device, app, physical model, or bio-system).</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">3️⃣</div>
+          <div class="card-title">Share</div>
+          <div class="card-desc">Present the prototype to community experts and gather feedback.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">4️⃣</div>
+          <div class="card-title">Present</div>
+          <div class="card-desc">Create a 5-minute creative pitch to perform for tournament judges!</div>
+        </div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Explain that expert outreach (calling or interviewing a real scientist or engineer) is a huge bonus point area for judging.
+      </div>
+    </section>
+
+    <!-- SLIDE 12: Schedule & Commitment -->
+    <section class="slide">
+      <div>
+        <h2>Meeting Schedule & Expectations</h2>
+        <p class="subtitle">Building momentum through consistent weekly practice</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-top: 4px solid var(--accent-cyan);">
+          <h3 style="color: var(--accent-cyan); font-family: 'Outfit'; font-size: 1.4rem; margin-bottom: 0.5rem;">🗓️ Meeting Cadence</h3>
+          <p style="font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">Once a Week for 2.5 Hours</p>
+          <p class="card-desc">
+            Longer sessions allow us to get into a deep "flow state"—giving 45 mins to Coding/Robot Game, 45 mins to Innovation Project, and time for team building!
+          </p>
+        </div>
+
+        <div class="card" style="border-top: 4px solid var(--accent-yellow);">
+          <h3 style="color: var(--accent-yellow); font-family: 'Outfit'; font-size: 1.4rem; margin-bottom: 0.5rem;">⭐ Student Expectations</h3>
+          <ul style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; margin-left: 1.2rem;">
+            <li>Attend weekly sessions consistently & on time</li>
+            <li>Encourage teammates and practice Gracious Professionalism</li>
+            <li>Take care of SPIKE Prime parts and participate in 5-min cleanups</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Reiterate that missing meetings affects the whole team, especially during attachment integration and project rehearsals.
+      </div>
+    </section>
+
+    <!-- SLIDE 13: Parent Partnership -->
+    <section class="slide">
+      <div>
+        <h2>Parent Partnership & Volunteer Roles</h2>
+        <p class="subtitle">It takes a village to power a championship team!</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card">
+          <div class="card-icon">🍎</div>
+          <div class="card-title">Snack Captain</div>
+          <div class="card-desc">Coordinate healthy snacks & water for our 2.5-hour weekly sessions.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔬</div>
+          <div class="card-title">Project Connector</div>
+          <div class="card-desc">Help connect the team with local environmental experts or bio-tech professionals.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <div class="card-title">Practice Judge</div>
+          <div class="card-desc">Play the role of a judge during mock presentation sessions in weeks 12–13.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon">🚗</div>
+          <div class="card-title">Event Logistics</div>
+          <div class="card-desc">Help transport robot mats, boards, and snacks on Tournament Day!</div>
+        </div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Ask parents to sign up for at least one volunteer role on the sign-up sheet before leaving.
+      </div>
+    </section>
+
+    <!-- SLIDE 14: Resource Hub -->
+    <section class="slide">
+      <div>
+        <h2>Recommended Video Hubs & Resources</h2>
+        <p class="subtitle">Bookmark these essential links for learning at home</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title" style="color: var(--accent-cyan);">📺 Video Channels & Demos</div>
+          <ul style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; margin-left: 1.2rem;">
+            <li><a href="https://www.youtube.com/@FIRSTLEGOLeagueofficial" target="_blank" style="color: var(--accent-cyan);">FIRST LEGO League Official YouTube</a></li>
+            <li><a href="https://primelessons.org" target="_blank" style="color: var(--accent-cyan);">Prime Lessons Programming Portal</a></li>
+            <li><a href="https://ortop.org" target="_blank" style="color: var(--accent-cyan);">ORTOP Oregon Robotics Video Wiki</a></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title" style="color: var(--accent-emerald);">📚 Official Rules & Game Updates</div>
+          <ul style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; margin-left: 1.2rem;">
+            <li><a href="https://www.firstinspires.org/programs/fll/game-and-season" target="_blank" style="color: var(--accent-emerald);">FIRST Inspires FLL Game & Season Page</a></li>
+            <li><a href="https://education.lego.com" target="_blank" style="color: var(--accent-emerald);">LEGO Education SPIKE Competition Ready Unit</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Encourage parents and students to bookmark these links on their home computers or tablets!
+      </div>
+    </section>
+
+    <!-- SLIDE 15: Q&A & Next Steps -->
+    <section class="slide">
+      <div>
+        <span style="color: var(--accent-emerald); font-weight: 700; text-transform: uppercase;">Ready to Launch</span>
+        <h1 style="margin-top: 4px;">Let's Build an Incredible Season!</h1>
+        <p class="subtitle">Questions, Comments, & Hands-On LEGO Time</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="background: rgba(56, 189, 248, 0.05); border-color: rgba(56, 189, 248, 0.3);">
+          <div class="card-title" style="color: var(--accent-cyan);">📋 Next Action Items</div>
+          <ol style="color: var(--text-muted); font-size: 1rem; line-height: 1.8; margin-left: 1.2rem; margin-top: 8px;">
+            <li>Sign the <strong>Team Code of Conduct</strong> sheet</li>
+            <li>Confirm email / phone on the parent contact roster</li>
+            <li>Grab a SPIKE Prime Hub & let's program our first glowing LED animation!</li>
+          </ol>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 1rem;">
+          <div style="font-size: 4rem;">🤖💚✨</div>
+          <h3 style="font-family: 'Outfit'; font-size: 1.8rem; color: #fff;">Thank You for Coming!</h3>
+        </div>
+      </div>
+
+      <div class="speaker-notes">
+        NOTES: Open the floor to parent/student Q&A, then invite everyone to the building tables for hands-on SPIKE hub exploration!
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation & Progress -->
+  <footer class="bottom-bar">
+    <div class="slide-number" id="slideNum">Slide 1 / 15</div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div style="display: flex; gap: 10px;">
+      <button class="btn" id="prevBtn">← Prev</button>
+      <button class="btn btn-primary" id="nextBtn">Next →</button>
+    </div>
+  </footer>
+
+  <!-- Deck Controller Script -->
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideNum = document.getElementById('slideNum');
+    const progressFill = document.getElementById('progressFill');
+    const notesToggle = document.getElementById('notesToggle');
+    const fullscreenToggle = document.getElementById('fullscreenToggle');
+    const icebreakerText = document.getElementById('icebreakerText');
+    const spinBtn = document.getElementById('spinBtn');
+
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    const icebreakers = [
+      "🧱 **Tallest Tower Challenge:** Build the tallest freestanding tower using only 10 LEGO bricks in 3 minutes!",
+      "🐸 **Bio-Tech Creature:** Build a glowing sea creature or beetle that could exist in a BIOGLOW ecosystem!",
+      "🗣️ **Two Truths & A LEGO Brick:** Share 2 true facts and 1 silly rumor about yourself!",
+      "🤖 **Robot Sound Machine:** Create a custom robot sound effect using only your voice!",
+      "🤝 **Blindfold Build Relay:** Partner up! One person is blindfolded while the other gives building directions.",
+      "⚡ **Speed Sort:** Sort 15 random LEGO pieces into color groups in under 30 seconds!",
+      "💡 **Problem Solver:** Name an invention that was inspired by nature (e.g. Velcro, Submarines, Sonar)!",
+      "🎉 **Team Cheer:** Invent a 5-second team chant and high-five!"
+    ];
+
+    function updateDeck() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+      slideNum.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+      progressFill.style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateDeck();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateDeck();
+      }
+    }
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      } else if (e.key === 'n' || e.key === 'N') {
+        toggleNotes();
+      }
+    });
+
+    function toggleNotes() {
+      const activeNotes = slides[currentSlide].querySelector('.speaker-notes');
+      if (activeNotes) {
+        activeNotes.classList.toggle('visible');
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
+      } else {
+        document.exitFullscreen().catch(err => console.log(err));
+      }
+    }
+
+    notesToggle.addEventListener('click', toggleNotes);
+    fullscreenToggle.addEventListener('click', toggleFullscreen);
+
+    spinBtn.addEventListener('click', () => {
+      let count = 0;
+      spinBtn.disabled = true;
+      const interval = setInterval(() => {
+        const randomIndex = Math.floor(Math.random() * icebreakers.length);
+        icebreakerText.innerHTML = icebreakers[randomIndex];
+        count++;
+        if (count > 10) {
+          clearInterval(interval);
+          spinBtn.disabled = false;
+        }
+      }, 100);
+    });
+
+    updateDeck();
+  </script>
+</body>
+</html>

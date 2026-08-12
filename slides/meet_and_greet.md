@@ -170,15 +170,15 @@ style: |
 ## BIOGLOW™ · 2026–2027
 
 **Meet & Greet for students and families**<br>
-Founders Edition · SPIKE™ Prime · Ages and grades vary by region
+FLL Founders Edition Challenge · SPIKE™ Prime
 
-> **Tonight’s goal:** meet your team, understand the season, and build something together.
+> **Tonight’s goal:** meet your team, understand the season, and answer any questions.
 
 ---
 
 <!-- _class: light -->
 
-<div class="kicker">150 minutes together</div>
+<div class="kicker">90 minutes together</div>
 
 # Today’s roadmap
 
@@ -205,7 +205,7 @@ Meet this year’s biodiversity theme and see the official season material in ac
 
 <span class="tag">Try</span>
 
-### Build together
+### Learn together
 
 Quick LEGO challenges for students and families, followed by a first look at SPIKE Prime.
 
@@ -237,7 +237,7 @@ FIRST LEGO League is a team-based STEM program in which students use **research,
 </div>
 <div class="card">
 
-### For our SPIKE Prime team
+### SPIKE Prime team
 
 - Build and program an autonomous robot
 - Explore a real-world biodiversity challenge
@@ -246,8 +246,6 @@ FIRST LEGO League is a team-based STEM program in which students use **research,
 
 </div>
 </div>
-
-<p class="source">BIOGLOW Founders Edition Challenge uses LEGO® Education SPIKE™ technology. Confirm local age and event eligibility with your Program Delivery Partner.</p>
 
 ---
 

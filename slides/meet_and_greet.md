@@ -59,11 +59,14 @@ style: |
     color: #e6f5f0;
   }
   table {
+    display: table;
     width: 100%;
+    table-layout: fixed;
     border-collapse: separate;
     border-spacing: 0;
     font-size: 20px;
     margin-top: 0.45em;
+    margin-bottom: 0.8em;
     overflow: hidden;
     border: 1px solid rgba(202, 237, 228, 0.22);
     border-radius: 12px;
@@ -71,36 +74,49 @@ style: |
   th {
     background: #0f4a52;
     color: #ffffff;
-    padding: 0.45em 0.65em;
+    padding: 0.5em 0.75em;
+    text-align: left;
   }
   td {
-    padding: 0.4em 0.65em;
+    padding: 0.5em 0.75em;
     background: rgba(255, 255, 255, 0.055);
+    color: #e6f5f0;
     border-color: rgba(202, 237, 228, 0.16);
+  }
+  th:first-child, td:first-child {
+    width: 35%;
+  }
+  th:last-child, td:last-child {
+    width: 65%;
   }
   ul, ol { margin: 0.38em 0 0; padding-left: 1.15em; }
   li { margin: 0.24em 0; }
-  .lead {
+  section.lead {
     padding: 76px;
     background-color: #06252b;
     background-image: radial-gradient(circle at 86% 18%, rgba(0, 202, 182, 0.42), transparent 26%), radial-gradient(circle at 73% 65%, rgba(171, 216, 62, 0.24), transparent 24%), linear-gradient(135deg, #06242a 0%, #0b3a42 100%);
   }
-  .lead h1 { font-size: 72px; max-width: 820px; }
-  .lead h2 { color: #b8e94e; font-size: 32px; font-weight: 600; }
-  .light {
+  section.lead h1 { font-size: 72px; max-width: 820px; }
+  section.lead h2 { color: #b8e94e; font-size: 32px; font-weight: 600; }
+  section.light {
     background-color: #f3faf7;
     background-image: radial-gradient(circle at 90% 5%, rgba(0, 184, 169, 0.17), transparent 24%), linear-gradient(135deg, #f8fcfa 0%, #e7f7f1 100%);
     color: #19383b;
   }
-  .light h1, .light h2 { color: #103b40; }
-  .light h3 { color: #087e76; }
-  .light strong { color: #103b40; }
-  .light a { color: #007d73; }
-  .light blockquote { background: #ddf2eb; color: #164047; }
-  .light table { border-color: #b8d9d1; }
-  .light th { background: #0c756f; }
-  .light td { background: rgba(255, 255, 255, 0.72); border-color: #d1e7e0; }
-  .accent {
+  section.light h1, section.light h2 { color: #103b40; }
+  section.light h3 { color: #087e76; }
+  section.light strong { color: #103b40; }
+  section.light a { color: #007d73; font-weight: 700; }
+  section.light blockquote { background: #ddf2eb; color: #164047; }
+  section.light table { border-color: #b8d9d1; }
+  section.light th { background: #0c756f; color: #ffffff; }
+  section.light td { background: #ffffff; color: #103b40; border-color: #d1e7e0; font-weight: 500; }
+  section.light td strong { color: #103b40; }
+  section.light .callout { background: rgba(244, 177, 62, 0.18); color: #103b40; }
+  section.light .callout strong { color: #103b40; }
+  section.light .card { border-color: #c2dfd7; background: rgba(255, 255, 255, 0.75); }
+  section.light .source { color: #4d7271; }
+  section.accent {
     background-color: #13434b;
     background-image: radial-gradient(circle at 8% 10%, rgba(174, 229, 74, 0.19), transparent 24%), radial-gradient(circle at 92% 88%, rgba(244, 177, 62, 0.23), transparent 22%);
   }
@@ -258,29 +274,27 @@ FIRST LEGO League is a team-based STEM program in which students use **research,
 <div class="columns">
 <div class="card">
 
+<span class="tag">What is FLL?</span>
+
+### About FIRST LEGO League
+
+[Watch: About FIRST LEGO League](https://www.youtube.com/watch?v=8J43DQixwPI&t=2s)
+
+A short overview of FIRST LEGO League for families and new team members.
+
+</div>
+<div class="card">
+
 <span class="tag">3–5 minute opener</span>
 
 ### Official season reveal
 
 [Watch: Introducing the 2026–2027 FIRST LEGO League BIOGLOW Season](https://www.youtube.com/watch?v=_g9kl7xb8nU)
 
-Use this video to introduce the biodiversity theme and give families a shared picture of the season.
-
-</div>
-<div class="card">
-
-<span class="tag">Coach’s choice</span>
-
-### Official welcome video
-
-[Watch: Welcome to the BIOGLOW season](https://www.youtube.com/watch?v=MPKxFy3qV2M)
-
-The FIRST and LEGO Education leaders explain the season, the two editions, and how teams can begin.
+Introduce the biodiversity theme and give families a shared picture of the season.
 
 </div>
 </div>
-
-<div class="callout">Pause after the video: <strong>What part of the season are you most excited to try?</strong></div>
 
 ---
 
@@ -306,12 +320,12 @@ Our current experience is built around **SPIKE Prime**, an autonomous Robot Game
 
 BIOGLOW offers **Founders Edition** and **Future Edition** experiences. Availability, format, and timing vary by region.
 
-**Founders Edition Challenge** is the relevant path for teams using SPIKE Prime. Check local event information before making assumptions about registration or tournament format.
+**Founders Edition Challenge** is the relevant path for teams using SPIKE Prime.
 
 </div>
 </div>
 
-<p class="source">Official source: [FIRST Game & Season](https://www.firstinspires.org/programs/fll/game-and-season) · [BIOGLOW season materials](https://www.firstinspires.org/resources/library/fll/season-materials)</p>
+<p class="source">Official source: <a href="https://www.firstinspires.org/programs/fll/game-and-season">FIRST Game &amp; Season</a> · <a href="https://www.firstinspires.org/resources/library/fll/season-materials">BIOGLOW season materials</a></p>
 
 ---
 
@@ -349,7 +363,7 @@ Teams also demonstrate Gracious Professionalism during official Robot Game match
 </div>
 </div>
 
-> Start simple. A repeatable mission is more valuable than an ambitious mission that only works once.
+> Start simple. A repeatable mission is more valuable than a mission that only works once.
 
 <p class="source">Use the official Robot Game Rulebook and current updates as the source of truth for scoring, equipment, and match requirements.</p>
 
@@ -362,13 +376,13 @@ Teams also demonstrate Gracious Professionalism during official Robot Game match
 # Watch, set up, then read the rulebook
 
 | Use it for | Official resource |
-|---|---|
-| Season overview | [BIOGLOW season materials](https://education.lego.com/en-us/first-lego-league/season-materials/) |
-| Field orientation and scoring | [BIOGLOW Robot Game Missions Video — Founders Edition](https://www.youtube.com/watch?v=uhZZ8O1StiQ) |
-| Building the official field | [BIOGLOW Field Setup — Founders Edition](https://www.youtube.com/watch?v=wDan0826cn0) |
-| Rules, updates, meeting guides, and notebooks | [FIRST Game & Season portal](https://www.firstinspires.org/programs/fll/game-and-season) |
+| :--- | :--- |
+| Season overview | [BIOGLOW Season Materials](https://education.lego.com/en-us/first-lego-league/season-materials/) |
+| Field orientation & scoring | [BIOGLOW Missions Video (Founders Edition)](https://www.youtube.com/watch?v=uhZZ8O1StiQ) |
+| Building the official field | [BIOGLOW Field Setup Video](https://www.youtube.com/watch?v=wDan0826cn0) |
+| Rules, updates & meeting guides | [FIRST Game &amp; Season Portal](https://www.firstinspires.org/programs/fll/game-and-season) |
 
-<div class="callout">Before the first robot build: **watch the field setup video and read the current rulebook together.**</div>
+<div class="callout">Before the first robot build: <strong>watch the field setup video and read the current rulebook together.</strong></div>
 
 ---
 
@@ -554,7 +568,7 @@ Run the same test more than once. Record what changed and what the robot did.
 </div>
 </div>
 
-<p class="source">Official skill-building path: [LEGO Education SPIKE Prime Competition Ready](https://education.lego.com/en-us/lessons/prime-competition-ready/)</p>
+<p class="source">Official skill-building path: <a href="https://education.lego.com/en-us/lessons/prime-competition-ready/">LEGO Education SPIKE Prime Competition Ready</a></p>
 
 ---
 
@@ -565,7 +579,7 @@ Run the same test more than once. Record what changed and what the robot did.
 # Turn curiosity into community impact
 
 | Step | What students do |
-|---|---|
+| :--- | :--- |
 | **Identify** | Observe a specific biodiversity or ecosystem challenge. |
 | **Research** | Learn from credible sources and people who understand the problem. |
 | **Design** | Create, compare, and improve possible solutions. |

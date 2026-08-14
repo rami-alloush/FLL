@@ -453,7 +453,7 @@ We share learning, celebrate improvement, and remember that other teams are fell
 
 <div class="callout"><strong>The golden rule:</strong> Students do the work. Coaches and families guide with questions, encouragement, logistics, and safety support.</div>
 
----
+<!-- ---
 
 <div class="kicker">Try it now</div>
 
@@ -493,7 +493,7 @@ One partner builds while the other gives precise, respectful directions.
 **Debrief:** Which instructions helped most?
 
 </div>
-</div>
+</div> -->
 
 ---
 
@@ -629,9 +629,9 @@ A steady meeting rhythm gives the team enough time to build, code, research, pre
 
 <span class="tag">Keep us ready</span>
 
-### Snack & session support
+### Session support
 
-Coordinate water, snacks, sign-ins, and a welcoming space.
+Coordinate water and sign-ins.
 
 </div>
 <div class="card">
@@ -693,16 +693,9 @@ Offer feedback during rehearsals and help with travel or equipment on event days
 
 # Let’s make a team<br>that glows.
 
-## Questions, sign-up, and hands-on SPIKE Prime time
+## Questions and Members Introduction
 
 <div class="columns">
-<div>
-
-1. Sign the team agreement
-2. Confirm family contact information
-3. Join a building table and program your first Hub animation
-
-</div>
 <div class="card">
 
 ### Leave with one answer

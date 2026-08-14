@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "generate:slides": "node slides/generate_meet_and_greet.js",
-    "generate:marp": "marp slides/meet_and_greet.md --html --output slides/meet_and_greet_marp.html"
+    "generate:marp": "marp slides/meet_and_greet.md --html --output slides/meet_and_greet_marp.html && marp slides/meet_and_greet.md --pdf --output slides/meet_and_greet_marp.pdf && marp slides/meet_and_greet.md --pptx --output slides/meet_and_greet_marp.pptx"
   },
   "devDependencies": {
     "@marp-team/marp-cli": "4.5.0",

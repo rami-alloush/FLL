@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffd500">
+  <title>Meet the Builders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="stud-field" aria-hidden="true"></div>
+  <main class="app-shell">
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Meet the Builders home">
+        <span class="brand-mark"><i></i><i></i><i></i><i></i></span>
+        <span>MEET THE<br>BUILDERS</span>
+      </a>
+      <div class="header-actions">
+        <div class="progress-label"><strong id="header-count">0</strong> / 16 introduced</div>
+        <button id="reset-button" class="text-button">Reset session</button>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <section class="main-stage">
+        <div id="welcome-view" class="view welcome-view">
+          <div class="welcome-copy">
+            <p class="eyebrow">TEAM WARM-UP · RANDOM DRAW</p>
+            <h1>Let’s meet<br><span>the builders.</span></h1>
+            <p>Each student gets the spotlight and three surprise questions. Everyone gets one turn before any names repeat.</p>
+            <button id="pick-button" class="primary-button">Pick the first builder <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="brick-stack" aria-hidden="true">
+            <div class="brick brick-yellow"><b>READY?</b></div>
+            <div class="brick brick-red"><b>3 QUESTIONS</b></div>
+            <div class="brick brick-blue"><b>1 BUILDER</b></div>
+          </div>
+          <div class="session-facts">
+            <div><strong>16</strong><span>builders</span></div>
+            <div><strong>3</strong><span>questions each</span></div>
+            <div><strong>0</strong><span>repeat picks</span></div>
+          </div>
+        </div>
+
+        <div id="spotlight-view" class="view spotlight-view" hidden>
+          <div class="spotlight-topline">
+            <p class="eyebrow">BUILDER SPOTLIGHT</p>
+            <span id="turn-label" class="turn-label">TURN 01 OF 16</span>
+          </div>
+          <div class="name-plate">
+            <span id="student-initials" class="student-initials">AS</span>
+            <div><span>COME ON UP</span><h1 id="student-name">Student Name</h1></div>
+          </div>
+          <div class="question-heading">
+            <div><p class="eyebrow">YOUR THREE QUESTIONS</p><h2>Tell us about yourself</h2></div>
+            <button id="shuffle-questions-button" class="icon-button" title="Shuffle these questions" aria-label="Shuffle these questions">↻</button>
+          </div>
+          <div id="question-list" class="question-list"></div>
+          <div class="spotlight-actions">
+            <button id="redraw-button" class="secondary-button">Put name back & redraw</button>
+            <button id="complete-turn-button" class="primary-button">Finished — next builder <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+
+        <div id="complete-view" class="view complete-view" hidden>
+          <div class="flag-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="eyebrow">FULL TEAM INTRODUCED</p>
+          <h1>We know the<br><span>whole crew!</span></h1>
+          <p>All 16 builders have taken the spotlight. That’s a strong first connection.</p>
+          <button id="new-session-button" class="primary-button">Start a new session <span aria-hidden="true">↻</span></button>
+          <div class="team-mosaic" id="team-mosaic" aria-label="Completed team"></div>
+        </div>
+      </section>
+
+      <aside class="roster-panel">
+        <div class="roster-heading">
+          <div><p class="eyebrow">TODAY’S TEAM</p><h2>Builder roster</h2></div>
+          <span id="remaining-badge" class="remaining-badge">16 LEFT</span>
+        </div>
+        <div class="progress-track"><span id="progress-bar"></span></div>
+        <ol id="student-list" class="student-list"></ol>
+        <div class="roster-key"><span><i class="dot waiting"></i> Waiting</span><span><i class="dot done"></i> Introduced</span></div>
+      </aside>
+    </div>
+  </main>
+  <footer>Made for team connection · Everyone gets a turn</footer>
+  <script src="app.js"></script>
+</body>
+</html>

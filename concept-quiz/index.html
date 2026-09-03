@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLL Build Concepts Quiz</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --accent: #f59e0b;
+    --accent-dark: #d97706;
+    --correct: #22c55e;
+    --wrong: #ef4444;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px;
+  }
+  .container { width: 100%; max-width: 720px; }
+  header { text-align: center; margin-bottom: 24px; }
+  header h1 { font-size: 1.6rem; margin-bottom: 6px; }
+  header p { color: var(--muted); font-size: 0.95rem; }
+  .card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+  /* Progress */
+  .progress-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px; font-size: 0.9rem; color: var(--muted);
+  }
+  .progress-bar {
+    height: 8px; background: #334155; border-radius: 4px; overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .progress-fill {
+    height: 100%; background: var(--accent); width: 0%;
+    transition: width 0.3s ease;
+  }
+  /* Question */
+  .category-chip {
+    display: inline-block; font-size: 0.75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    background: #334155; color: var(--accent);
+    padding: 4px 10px; border-radius: 999px; margin-bottom: 14px;
+  }
+  .question-text { font-size: 1.25rem; line-height: 1.5; margin-bottom: 22px; }
+  .options { display: flex; flex-direction: column; gap: 12px; }
+  .option {
+    text-align: left; font-size: 1rem; line-height: 1.4;
+    background: #0f172a; color: var(--text);
+    border: 2px solid #334155; border-radius: 12px;
+    padding: 14px 16px; cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .option:hover:not(:disabled) { border-color: var(--accent); }
+  .option:disabled { cursor: default; }
+  .option .letter {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+    background: #334155; display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700;
+  }
+  .option.correct { border-color: var(--correct); background: rgba(34,197,94,0.12); }
+  .option.correct .letter { background: var(--correct); color: #052e16; }
+  .option.wrong { border-color: var(--wrong); background: rgba(239,68,68,0.12); }
+  .option.wrong .letter { background: var(--wrong); color: #450a0a; }
+  .option.dimmed { opacity: 0.55; }
+  /* Feedback */
+  .feedback {
+    margin-top: 20px; padding: 14px 16px; border-radius: 12px;
+    font-size: 0.95rem; line-height: 1.5; display: none;
+  }
+  .feedback.show { display: block; }
+  .feedback.correct { background: rgba(34,197,94,0.12); border: 1px solid var(--correct); }
+  .feedback.wrong { background: rgba(239,68,68,0.12); border: 1px solid var(--wrong); }
+  .feedback strong { display: block; margin-bottom: 4px; }
+  .next-btn {
+    margin-top: 20px; width: 100%; padding: 14px;
+    font-size: 1rem; font-weight: 700;
+    background: var(--accent); color: #422006;
+    border: none; border-radius: 12px; cursor: pointer;
+    display: none;
+  }
+  .next-btn:hover { background: var(--accent-dark); }
+  .next-btn.show { display: block; }
+  /* Start & results screens */
+  .center { text-align: center; }
+  .big-btn {
+    margin-top: 24px; padding: 16px 40px;
+    font-size: 1.1rem; font-weight: 700;
+    background: var(--accent); color: #422006;
+    border: none; border-radius: 12px; cursor: pointer;
+  }
+  .big-btn:hover { background: var(--accent-dark); }
+  .score-ring {
+    font-size: 3rem; font-weight: 800; color: var(--accent);
+    margin: 16px 0 4px;
+  }
+  .score-msg { color: var(--muted); margin-bottom: 8px; }
+  .review-list { text-align: left; margin-top: 24px; max-height: 320px; overflow-y: auto; }
+  .review-item {
+    padding: 12px 14px; border-radius: 10px; margin-bottom: 10px;
+    font-size: 0.9rem; line-height: 1.45;
+  }
+  .review-item.ok { background: rgba(34,197,94,0.1); border-left: 4px solid var(--correct); }
+  .review-item.miss { background: rgba(239,68,68,0.1); border-left: 4px solid var(--wrong); }
+  .review-item .q { font-weight: 600; margin-bottom: 4px; }
+  .review-item .a { color: var(--muted); }
+  .hidden { display: none; }
+  .topic-list {
+    text-align: left; margin: 20px auto 0; max-width: 480px;
+    color: var(--muted); font-size: 0.95rem; line-height: 1.8;
+  }
+  .topic-list li { margin-left: 20px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>FLL Build Concepts Quiz</h1>
+    <p>General concepts from the text-based building instructions &mdash; no time limit</p>
+  </header>
+
+  <!-- START SCREEN -->
+  <div id="start-screen" class="card center">
+    <h2>Ready to test your building knowledge?</h2>
+    <p style="color:var(--muted); margin-top:10px;">
+      Multiple-choice questions covering the key terms and concepts from the
+      instructions guide. Take as long as you need &mdash; there is no timer.
+    </p>
+    <ul class="topic-list">
+      <li>Spatial words: front, behind, vertically, horizontally</li>
+      <li>Rows, columns, and centering</li>
+      <li>Plates, tiles, studs &amp; anti-studs</li>
+      <li>Symmetry in building</li>
+      <li>Technic parts: axles, pins, liftarms, gears &amp; bushes</li>
+    </ul>
+    <button class="big-btn" id="start-btn">Start Quiz</button>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="quiz-screen" class="card hidden">
+    <div class="progress-row">
+      <span id="question-counter">Question 1 of 10</span>
+      <span id="score-counter">Score: 0</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="category-chip" id="category-chip"></span>
+    <div class="question-text" id="question-text"></div>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="next-btn">Next Question</button>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div id="results-screen" class="card center hidden">
+    <h2>Quiz Complete!</h2>
+    <div class="score-ring" id="final-score"></div>
+    <div class="score-msg" id="score-message"></div>
+    <div class="review-list" id="review-list"></div>
+    <button class="big-btn" id="restart-btn">Try Again</button>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  // --- Spatial orientation ---
+  {
+    category: "Spatial Words",
+    q: "In the instructions, when a step says a piece goes \"in front\", where is that?",
+    options: [
+      "Towards you",
+      "Away from you",
+      "Towards the ceiling",
+      "Towards the floor"
+    ],
+    answer: 0,
+    explain: "\"In front of / Front\" means towards you. \"Behind / Back\" means away from you."
+  },
+  {
+    category: "Spatial Words",
+    q: "What does \"up\" mean in the building instructions?",
+    options: [
+      "Towards the floor",
+      "Towards the ceiling",
+      "Towards you",
+      "Away from you"
+    ],
+    answer: 1,
+    explain: "\"Up\" means towards the ceiling, and \"down\" means towards the floor."
+  },
+  {
+    category: "Spatial Words",
+    q: "When the instructions say to place a piece \"vertically\", what does that mean?",
+    options: [
+      "Going from left to right",
+      "Going from front to behind",
+      "Pointing up towards the ceiling",
+      "Lying parallel to the ground"
+    ],
+    answer: 1,
+    explain: "Vertically means going from front to behind. Horizontally means going from left to right."
+  },
+  {
+    category: "Spatial Words",
+    q: "A step says to place a 2x4 plate \"horizontally\". Which way is it oriented?",
+    options: [
+      "From front to behind",
+      "From left to right",
+      "Standing upright like a wall",
+      "Stacked on top of another piece"
+    ],
+    answer: 1,
+    explain: "Horizontally means going from left to right."
+  },
+  {
+    category: "Spatial Words",
+    q: "What does it mean when a piece is described as \"upright\"?",
+    options: [
+      "It is pointing up towards the ceiling",
+      "It is lying flat on the table",
+      "It is turned upside down",
+      "It is facing towards you"
+    ],
+    answer: 0,
+    explain: "Upright means pointing up towards the ceiling."
+  },
+  {
+    category: "Spatial Words",
+    q: "\"Standing upright\" means the piece is perpendicular to the ground, like a wall. What does \"lying flat\" mean?",
+    options: [
+      "The piece is standing on its side",
+      "The piece is parallel to the ground, like a piece of toast which fell off the table",
+      "The piece is balanced on one stud",
+      "The piece is stacked on top of the build"
+    ],
+    answer: 1,
+    explain: "Lying flat means the piece is parallel to the ground \u2014 like a piece of toast which fell off the table."
+  },
+
+  // --- Studs, plates, tiles ---
+  {
+    category: "Pieces & Studs",
+    q: "What is a \"stud\" on a LEGO brick?",
+    options: [
+      "The hole on the bottom of the brick",
+      "The bump on top of a LEGO brick",
+      "The side wall of the brick",
+      "A special connector piece"
+    ],
+    answer: 1,
+    explain: "A stud is the bump on a LEGO brick. Example: a 2x1 brick has two studs on it."
+  },
+  {
+    category: "Pieces & Studs",
+    q: "How many studs does a 2x1 brick have on it?",
+    options: ["One", "Two", "Three", "Four"],
+    answer: 1,
+    explain: "A 2x1 brick has two studs on it \u2014 the first number tells you the stud count."
+  },
+  {
+    category: "Pieces & Studs",
+    q: "What is the difference between a plate and a tile?",
+    options: [
+      "A plate is tall, a tile is short",
+      "A plate has studs, a tile is smooth without studs",
+      "A plate is always round, a tile is always square",
+      "There is no difference"
+    ],
+    answer: 1,
+    explain: "A plate is a piece with studs. A tile is a smooth piece without studs (unless otherwise specified)."
+  },
+  {
+    category: "Pieces & Studs",
+    q: "What is an \"anti-stud\"?",
+    options: [
+      "A stud that repels other bricks",
+      "The portion of a piece which accepts studs, like the bottom of a plate",
+      "A stud on the side of a brick",
+      "A broken stud"
+    ],
+    answer: 1,
+    explain: "The anti-stud is the portion of a piece which accepts studs, like the bottom of a plate."
+  },
+  {
+    category: "Pieces & Studs",
+    q: "What is a \"jumper plate\"?",
+    options: [
+      "A plate that springs off the build",
+      "A 1x2 plate with a single stud on top, or a 1x3 plate with only two studs on top",
+      "A plate used only under tires",
+      "A transparent plate"
+    ],
+    answer: 1,
+    explain: "A jumper plate is a 1x2 plate with a single stud on top, or a 1x3 plate with only two studs on top. It lets you offset a build by half a stud."
+  },
+
+  // --- Rows, columns, centering ---
+  {
+    category: "Rows & Columns",
+    q: "What is a \"row\" of studs?",
+    options: [
+      "Studs lined up horizontally (left to right)",
+      "Studs lined up upright or vertically (top to bottom)",
+      "Studs stacked on top of each other",
+      "Studs arranged in a circle"
+    ],
+    answer: 0,
+    explain: "A row is studs lined up horizontally (left to right, side to side)."
+  },
+  {
+    category: "Rows & Columns",
+    q: "What is a \"column\" of studs?",
+    options: [
+      "Studs lined up horizontally (left to right)",
+      "Studs lined up upright or vertically (top to bottom / back to front)",
+      "A single stud by itself",
+      "Studs on the bottom of a brick"
+    ],
+    answer: 1,
+    explain: "A column is studs lined up upright or vertically (top to bottom, back to front)."
+  },
+  {
+    category: "Rows & Columns",
+    q: "A step says to place a piece \"centered-horizontally\". What does that mean?",
+    options: [
+      "Even amount of space in front of and behind the piece",
+      "Even amount of space left and right of the piece",
+      "The piece is exactly in the middle of the whole build",
+      "The piece is rotated 180 degrees"
+    ],
+    answer: 1,
+    explain: "Centered-horizontally means an even amount of space left and right of the piece. Centered-vertically means even space in front of and behind it."
+  },
+  {
+    category: "Rows & Columns",
+    q: "A step says to place a piece \"centered-vertically\". What does that mean?",
+    options: [
+      "Even amount of space left and right of the piece",
+      "Even amount of space in front of and behind the piece",
+      "The piece stands upright",
+      "The piece is at the very top of the build"
+    ],
+    answer: 1,
+    explain: "Centered-vertically means an even amount of space in front of and behind the piece."
+  },
+
+  // --- Symmetry ---
+  {
+    category: "Symmetry",
+    q: "What does \"symmetrically\" mean in these instructions?",
+    options: [
+      "Do the same step twice in the exact same spot",
+      "A mirror image of what you just did",
+      "Place the piece on the opposite side of the table",
+      "Skip the step"
+    ],
+    answer: 1,
+    explain: "Symmetrically means a mirror image. Example: if a technic connector points to the front on the front wall, its mirror partner on the back wall should point to the back."
+  },
+  {
+    category: "Symmetry",
+    q: "You place a 2x1 brick with a technic connector on the front wall at the right, connector pointing to the front. The instructions say to place another one symmetrically on the back wall, at the right. Which way should the second connector point?",
+    options: [
+      "To the front, same as the first",
+      "To the back, since it is a mirror image",
+      "To the left",
+      "To the right"
+    ],
+    answer: 1,
+    explain: "Symmetrical placement is a mirror image \u2014 the second connector should point to the back."
+  },
+
+  // --- Instruction phrases ---
+  {
+    category: "Instructions",
+    q: "When the instructions say \"that one\" (or \"ppp\"), which piece do they mean?",
+    options: [
+      "The next piece you will place",
+      "The previously placed piece",
+      "The first piece of the build",
+      "Any piece you choose"
+    ],
+    answer: 1,
+    explain: "\"That one / ppp\" refers to the previously placed piece."
+  },
+  {
+    category: "Instructions",
+    q: "The set includes a few spare parts. What should you do with them?",
+    options: [
+      "Mix them into your sorted groups",
+      "Set them into their own group away from the rest, in case you need them later",
+      "Throw them away",
+      "Use them wherever you want"
+    ],
+    answer: 1,
+    explain: "LEGO includes a few spare parts in case you lose something \u2014 keep them in their own group, separate from the rest."
+  },
+
+  // --- Technic: Axles ---
+  {
+    category: "Technic: Axles",
+    q: "What is the cross-section shape of a Technic axle?",
+    options: [
+      "A circle",
+      "An X shape",
+      "A square",
+      "A triangle"
+    ],
+    answer: 1,
+    explain: "An axle has an X-shaped cross-section. Because it is not round, anything connected using an axle-hole will rotate with the axle."
+  },
+  {
+    category: "Technic: Axles",
+    q: "How long is a 3L axle?",
+    options: [
+      "Three studs wide",
+      "Three bricks long",
+      "Three centimeters",
+      "Three holes long"
+    ],
+    answer: 1,
+    explain: "The length of an axle corresponds with how many bricks long it is \u2014 a 3L axle is three bricks long."
+  },
+  {
+    category: "Technic: Axles",
+    q: "What is the shortest axle available?",
+    options: ["1L", "2L", "3L", "4L"],
+    answer: 1,
+    explain: "Axles come in a variety of lengths, with a 2L axle being the shortest available."
+  },
+  {
+    category: "Technic: Axles",
+    q: "What does a \"stop\" on an axle do?",
+    options: [
+      "It makes the axle spin faster",
+      "It prevents the axle from sliding through an axle-hole at a specific point",
+      "It connects two axles together",
+      "It holds the axle in the storage bag"
+    ],
+    answer: 1,
+    explain: "A stop prevents the axle from sliding through an axle-hole at a specific point on the axle."
+  },
+
+  // --- Technic: Pins ---
+  {
+    category: "Technic: Pins",
+    q: "What is the cross-section shape of a Technic pin?",
+    options: [
+      "An X shape",
+      "A circle",
+      "A hexagon",
+      "A star"
+    ],
+    answer: 1,
+    explain: "A pin has a circular cross-section, with a flanged notch that clicks into bricks with a pin-hole."
+  },
+  {
+    category: "Technic: Pins",
+    q: "For standard pins, which color is a HIGH friction pin?",
+    options: [
+      "Black",
+      "Gray",
+      "Blue",
+      "Yellow"
+    ],
+    answer: 0,
+    explain: "For standard pins, black is a high friction pin and gray is a low friction pin. Friction ridges are small bumps that prevent the pin from rotating freely."
+  },
+  {
+    category: "Technic: Pins",
+    q: "What do friction ridges on a pin do?",
+    options: [
+      "Make the pin easier to remove",
+      "Prevent the pin from rotating freely",
+      "Change the pin's color",
+      "Make the pin longer"
+    ],
+    answer: 1,
+    explain: "Friction ridges are small bumps on the pin which prevent it from rotating freely."
+  },
+  {
+    category: "Technic: Pins",
+    q: "A standard length pin is two brick lengths long. What does the stop in the middle prevent?",
+    options: [
+      "A brick from being pushed from one side of the pin to the other",
+      "The pin from rotating",
+      "The pin from falling out of the bag",
+      "Two bricks from connecting"
+    ],
+    answer: 0,
+    explain: "A standard pin has a stop in the middle, which prevents a brick from being pushed from one side of the pin to the other."
+  },
+  {
+    category: "Technic: Pins",
+    q: "What is special about a 3L pin?",
+    options: [
+      "It has stops on both ends",
+      "It only has a stop at one side, allowing two bricks to be pushed onto the other side",
+      "It is round instead of X-shaped",
+      "It has no notch"
+    ],
+    answer: 1,
+    explain: "A 3L pin is three bricks long and only contains a stop at one side, allowing two bricks to be pushed onto the other side of the pin."
+  },
+  {
+    category: "Technic: Pins",
+    q: "What does a 1L pin have at its end, in addition to the stop?",
+    options: [
+      "A hollow stud",
+      "A gear",
+      "An axle cross-section",
+      "A second stop"
+    ],
+    answer: 0,
+    explain: "A 1L pin is one brick long, retains the stop, and also includes a hollow stud at the other end."
+  },
+
+  // --- Technic: Liftarms, gears, bushes ---
+  {
+    category: "Technic Parts",
+    q: "What is a liftarm?",
+    options: [
+      "A motor that lifts the build",
+      "A beam with rounded ends and holes in it, usually without studs",
+      "A type of axle",
+      "A smooth tile with a hole"
+    ],
+    answer: 1,
+    explain: "A liftarm is a basic structural element \u2014 a beam with rounded ends and holes spaced like the studs on a LEGO brick, usually without studs. Holes accept axles or pins."
+  },
+  {
+    category: "Technic Parts",
+    q: "How do thick liftarms compare to thin liftarms?",
+    options: [
+      "Thick are as wide as a LEGO brick; thin are half as wide as a LEGO brick",
+      "Thick are stronger; thin are weaker",
+      "Thick have more holes; thin have fewer",
+      "They are the same size"
+    ],
+    answer: 0,
+    explain: "Thick liftarms are as wide as a LEGO brick, and thin liftarms are half as wide as a LEGO brick (but not the same thickness as a plate!)."
+  },
+  {
+    category: "Technic Parts",
+    q: "What do gears connected by axles do?",
+    options: [
+      "They hold the build together",
+      "They transmit or even transform rotational motion",
+      "They add weight to the base",
+      "They store energy"
+    ],
+    answer: 1,
+    explain: "Gears connected by axles transmit or even transform rotational motion. Worm gears look like a spiraling cylinder."
+  },
+  {
+    category: "Technic Parts",
+    q: "What are bushes (bushings) largely used for in Technic?",
+    options: [
+      "As spacers, and to reduce friction between rotating parts",
+      "As decoration only",
+      "To connect two axles at an angle",
+      "To replace pins"
+    ],
+    answer: 0,
+    explain: "Bushes are largely used as spacers, but they can also reduce friction between rotating parts or form useful elements such as handles."
+  },
+  {
+    category: "Technic Parts",
+    q: "What does an axle and pin connector do?",
+    options: [
+      "Connects some combination of pins or axles together, sometimes at an angle",
+      "Only connects two axles in a straight line",
+      "Connects a brick to a plate",
+      "Spins the axle faster"
+    ],
+    answer: 0,
+    explain: "Axle and pin connectors connect some combination of pins or axles. They come in many angle combinations \u2014 the simplest just connects two axles or pins in a straight line."
+  }
+];
+
+// --- State ---
+let quizQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let results = [];
+let answered = false;
+
+const $ = (id) => document.getElementById(id);
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startQuiz() {
+  quizQuestions = shuffle(QUESTIONS);
+  currentIndex = 0;
+  score = 0;
+  results = [];
+  $("start-screen").classList.add("hidden");
+  $("results-screen").classList.add("hidden");
+  $("quiz-screen").classList.remove("hidden");
+  showQuestion();
+}
+
+function showQuestion() {
+  answered = false;
+  const item = quizQuestions[currentIndex];
+  $("question-counter").textContent = `Question ${currentIndex + 1} of ${quizQuestions.length}`;
+  $("score-counter").textContent = `Score: ${score}`;
+  $("progress-fill").style.width = `${(currentIndex / quizQuestions.length) * 100}%`;
+  $("category-chip").textContent = item.category;
+  $("question-text").textContent = item.q;
+  $("feedback").className = "feedback";
+  $("next-btn").classList.remove("show");
+  $("next-btn").textContent = currentIndex === quizQuestions.length - 1 ? "See Results" : "Next Question";
+
+  const optionsEl = $("options");
+  optionsEl.innerHTML = "";
+  item.options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.className = "option";
+    btn.innerHTML = `<span class="letter">${String.fromCharCode(65 + i)}</span><span>${opt}</span>`;
+    btn.addEventListener("click", () => selectAnswer(i));
+    optionsEl.appendChild(btn);
+  });
+}
+
+function selectAnswer(i) {
+  if (answered) return;
+  answered = true;
+  const item = quizQuestions[currentIndex];
+  const isCorrect = i === item.answer;
+  if (isCorrect) score++;
+
+  results.push({
+    q: item.q,
+    correctText: item.options[item.answer],
+    pickedText: item.options[i],
+    isCorrect
+  });
+
+  const buttons = [...$("options").children];
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === item.answer) btn.classList.add("correct");
+    else if (idx === i) btn.classList.add("wrong");
+    else btn.classList.add("dimmed");
+  });
+
+  const fb = $("feedback");
+  fb.className = `feedback show ${isCorrect ? "correct" : "wrong"}`;
+  fb.innerHTML = isCorrect
+    ? `<strong>Correct!</strong>${item.explain}`
+    : `<strong>Not quite.</strong> The correct answer is: "${item.options[item.answer]}". ${item.explain}`;
+
+  $("score-counter").textContent = `Score: ${score}`;
+  $("next-btn").classList.add("show");
+}
+
+function nextQuestion() {
+  currentIndex++;
+  if (currentIndex >= quizQuestions.length) showResults();
+  else showQuestion();
+}
+
+function showResults() {
+  $("quiz-screen").classList.add("hidden");
+  $("results-screen").classList.remove("hidden");
+  const pct = Math.round((score / quizQuestions.length) * 100);
+  $("final-score").textContent = `${score} / ${quizQuestions.length}`;
+  let msg;
+  if (pct === 100) msg = "Perfect! You know these concepts inside and out.";
+  else if (pct >= 80) msg = "Great job! You have a strong grasp of the concepts.";
+  else if (pct >= 60) msg = "Good effort! Review the ones you missed and try again.";
+  else msg = "Keep practicing \u2014 review the guide's intro and try again!";
+  $("score-message").textContent = msg;
+
+  const list = $("review-list");
+  list.innerHTML = "";
+  results.forEach((r) => {
+    const div = document.createElement("div");
+    div.className = `review-item ${r.isCorrect ? "ok" : "miss"}`;
+    div.innerHTML = r.isCorrect
+      ? `<div class="q">\u2713 ${r.q}</div><div class="a">${r.correctText}</div>`
+      : `<div class="q">\u2717 ${r.q}</div><div class="a">You picked: "${r.pickedText}" \u2014 correct: "${r.correctText}"</div>`;
+    list.appendChild(div);
+  });
+}
+
+$("start-btn").addEventListener("click", startQuiz);
+$("restart-btn").addEventListener("click", startQuiz);
+$("next-btn").addEventListener("click", nextQuestion);
+</script>
+</body>
+</html>
